@@ -6,6 +6,7 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>U1-W3-D12-HW</title>
+      <link rel="shortcut icon" href="#"> <!--wtf-->
       <style>
         .myHeading {
           color: red;
@@ -22,8 +23,10 @@
     </head>
     <body>
       <div>
-        <h1 onclick="makeItClickable(event)" style="cursor:pointer">This is the title of the page</h1>
-        <h2>This is the subtitle of the page</h2>
+        <header>
+          <h1>This is the title of the page</h1>
+          <h2>This is the subtitle of the page</h2>
+        </header>
       </div>
   
       <div>
@@ -51,15 +54,13 @@
           <input
             type="text"
             id="input-field"
-            placeholder="input field for the exercise"
-            onkeyup="consolelogAfterKeystroke(event)"/>
+            placeholder="input field for the exercise"/>
         </div>
       </div>
       <footer>
       <div>
-        
         <p>And this text is just for the exercise too!</p>
-        <h2 style="color: red" onclick="changeFooterText(event)" style="cursor:pointer">
+        <h2 style="color: red">
           Save this page on your computer and open it with VSCode to get the
           questions!
         </h2>
@@ -169,31 +170,54 @@
             return [r,g,b];
         }
 
-          const makeItClickable = function (eventData) 
+          let makeItClickable = function () 
         {
-            let clickedTitle = eventData.target
-            clickedTitle.style.color = `rgb(${randomRGBColor()})`
+           let header = document.getElementsByTagName("h1")[0];
+             header.addEventListener("click", function(event)
+            {
+              event.target.style.color = `rgb(${randomRGBColor()})`;
+            })
         };
-  
+
+        makeItClickable()
+          
+
         /* EXERCISE 10
          Change the footer text with something else when the user clicks on it.
         */
   
-        const changeFooterText = function (eventData) {
-            let clickedFooter = eventData.target
-            clickedFooter.innerText = "“What is better? To be born good or to overcome your evil nature through great effort?” ― Paarthurnax";
+        const changeFooterText = function () 
+        {
+            let clickedFooter = document.getElementsByTagName("h2")[1];
+            clickedFooter.addEventListener("click", function(event)
+            {
+              event.target.innerText = "“What is better? To be born good or to overcome your evil nature through great effort?” ― Paarthurnax";
+            })
         };
-  
+        
+        changeFooterText()
+
         /* EXERCISE 11
          Attach an event listener to the input field in the page for console logging its value just after any keystroke.
         */
         
         const inputField = document.getElementById("input-field");
-        function consolelogAfterKeystroke(eventData)
+
+        function consoleLogAfterKeystroke()
         {
-          let inputFieldValue = inputField.value;
-          console.log(eventData.key);
+          inputField.addEventListener("keyup", function(event)
+          {
+            console.log(inputField.value)
+          })
         }
+        
+        consoleLogAfterKeystroke()
+
+        // function consolelogAfterKeystroke(eventData)
+        // {
+        //   let inputFieldValue = inputField.value;
+        //   console.log(eventData.key);
+        // }
   
         /* EXERCISE 12
          Create a welcome alert message when the page successfully loads.
