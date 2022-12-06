@@ -207,12 +207,16 @@
         {
           inputField.addEventListener("keyup", function(event)
           {
-            console.log(inputField.value)
+            console.log(event.key)
           })
         }
         
         consoleLogAfterKeystroke()
-  
+
+        /* EXERCISE 12
+         Create a welcome alert message when the page successfully loads.
+        */
+      
         window.onload = function () 
         {
           alert("Welcome")
